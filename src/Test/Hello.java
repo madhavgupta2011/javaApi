@@ -16,19 +16,19 @@ import javax.json.JsonObject;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
-@Path("/hello")
+@Path("/enterData")
 public class Hello {
 	
 	
 	@POST
 	
-	  @Produces(MediaType.APPLICATION_JSON)
+	  @Produces(MediaType.TEXT_PLAIN)
 	  @Consumes(MediaType.APPLICATION_JSON)
 	public String sayPlainTextHello(JsonObject inputJsonObj) throws Exception {
 		String name = inputJsonObj.getString("name");
 		int age = inputJsonObj.getInt("age");
 		String email = inputJsonObj.getString("email");
-		String outputJsonObj = "{ \"name\" : \""+name+"\", \"age\" :"+age+", \"email\" :\""+email+"\" }";
+		String outputJsonObj = "Patient Entered in Database";
 		System.out.println(name);
 		int count=connect.addPatient(name, age, email);
 		Email.sendMail(name,age,email);
